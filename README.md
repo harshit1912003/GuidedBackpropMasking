@@ -76,8 +76,5 @@ The `evaluate.py` script:
 
 ## Example Result
 
-Input Image (`img.png`):
 ![Input Image](img.png)
-
-Generated Segmentation Mask (`mask.png`):
 ![Segmentation Mask](mask.png)
