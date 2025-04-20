@@ -38,22 +38,6 @@ The `train.py` script:
 
 This part leverages the trained classification model to perform segmentation without any specific segmentation training. The hypothesis is that the classifier must learn to focus on the relevant object (foreground) to make accurate predictions, and this spatial focus can be extracted.
 
-### Method (Guided Backpropagation Inspired Saliency)
-
-We use a gradient-based saliency method inspired by Guided Backpropagation to generate an importance map.
-
-**Mathematical Intuition:**
-
-Let \(I\) be the input image tensor and \(S_c(I)\) be the score (logit) produced by the network for the predicted class \(c\) before the final softmax. We want to understand how small changes in each input pixel \(I_{ij}\) affect this score. This is captured by the gradient:
-
-\[
-G = \frac{\partial S_c}{\partial I}
-\]
-
-This gradient tensor \(G\) has the same dimensions as the input image \(I\). Each element \(G_{ij}\) indicates the importance of pixel \(I_{ij}\) for the score \(S_c\). A higher positive value suggests that increasing the pixel's intensity increases the score for class \(c\).
-
-*Note: True Guided Backpropagation modifies the backward pass through ReLU activations to only pass positive gradients corresponding to positive activations, aiming for cleaner visualizations. This implementation uses the standard gradient computation but processes it to achieve a similar goal of highlighting important regions.*
-
 **Implementation (`evaluate.py`):**
 
 The `evaluate.py` script:
